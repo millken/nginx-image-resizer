@@ -8,6 +8,8 @@ services:
       - 9000:9000
     volumes:
       - minio-data:/data
+ #     - "/etc/timezone:/etc/timezone:ro"
+ #     - "/etc/localtime:/etc/localtime:ro"      
     logging:
       driver: "json-file"
       options:
@@ -19,12 +21,14 @@ services:
     command: server /data
 
   image-resizer:
-    image: appleboy/nginx-image-resizer
+    image: millken/nginx-image-resizer
     container_name: image-resizer
     ports:
       - 8002:80
     volumes:
       - cache-data:/data
+#      - "/etc/timezone:/etc/timezone:ro"
+#      - "/etc/localtime:/etc/localtime:ro"
     logging:
       driver: "json-file"
       options:
